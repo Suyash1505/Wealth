@@ -1,5 +1,5 @@
 import User from "@/models/User.models.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 import { connectDB } from "@/lib/mongodb.js";
 import { verifyToken } from "@/middleware/auth.js";
