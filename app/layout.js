@@ -3,6 +3,7 @@ import "./globals.css";
 
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import ToastProvider from "@/components/ToastProvider.jsx";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -36,6 +37,9 @@ export default function RootLayout({ children }) {
 
         <main className="min-h-screen">
           {children}
+
+          <ToastProvider/>
+
         </main>
       
         {/* ------- FOOTER ----------- */}
