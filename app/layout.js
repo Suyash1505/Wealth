@@ -35,9 +35,9 @@ export default function RootLayout({ children }) {
         {/* ------- HEADER ----------- */}
         <Header/>
 
-        <main className="flex-1 pt-35">
-          {children}
+        <main className="flex-1 pt-20">
           <ToastProvider/>
+          {children}
         </main>
       
         {/* ------- FOOTER ----------- */}

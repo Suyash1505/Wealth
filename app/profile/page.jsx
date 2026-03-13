@@ -3,6 +3,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { Button } from "@/components/ui/button";
 
 export default function Profile() {
 
@@ -16,7 +17,7 @@ export default function Profile() {
       ? localStorage.getItem("token")
       : null;
 
-  // GET USER PROFILE
+  // GET PROFILE
   useEffect(() => {
 
     axios.get("/api/user/profile", {
@@ -39,17 +40,14 @@ export default function Profile() {
 
   }, []);
 
-  // UPDATE PROFILE DETAILS
+  // UPDATE PROFILE
   const updateProfile = async () => {
 
     try {
 
       const res = await axios.put(
         "/api/user/update-profile",
-        {
-          user_name,
-          email
-        },
+        { user_name, email },
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -72,7 +70,7 @@ export default function Profile() {
 
   };
 
-  // UPLOAD PROFILE IMAGE
+  // UPLOAD IMAGE
   const uploadImage = async () => {
 
     if (!image) {
@@ -96,9 +94,13 @@ export default function Profile() {
       );
 
       if (res.data.success) {
+
         setProfilePic(res.data.image);
+
         localStorage.setItem("profilePic", res.data.image);
-        window.dispatchEvent(new Event("authChanged"))
+
+        window.dispatchEvent(new Event("authChanged"));
+
         toast.success("Image uploaded successfully");
 
       }
@@ -116,59 +118,66 @@ export default function Profile() {
 
   return (
 
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="min-h-screen flex items-center justify-center px-6">
 
-      <div className="bg-white shadow-lg rounded-xl p-8 w-[400px]">
+      <div className="glass-strong w-full max-w-md rounded-3xl p-10 shadow-xl">
 
-        <h2 className="text-2xl font-bold text-center mb-6">
+        {/* TITLE */}
+        <h2 className="text-3xl font-bold text-center mb-8 gradient-title">
           User Profile
         </h2>
 
-        <div className="flex flex-col items-center">
+        {/* PROFILE IMAGE */}
+        <div className="flex flex-col items-center mb-6">
 
           {profilePic && (
             <img
               src={profilePic}
               alt="profile"
-              className="w-28 h-28 rounded-full object-cover mb-4 border"
+              className="w-28 h-28 rounded-full object-cover border-4 border-white shadow-md mb-4"
             />
           )}
 
           <input
             type="file"
             onChange={(e)=>setImage(e.target.files[0])}
-            className="mb-3"
+            className="text-sm mb-3"
           />
 
-          <button
+          <Button
+            size="sm"
+            variant="outline"
             onClick={uploadImage}
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mb-6"
           >
             Upload Image
-          </button>
+          </Button>
 
         </div>
 
+        {/* NAME */}
         <input
           value={user_name}
           onChange={(e)=>setUserName(e.target.value)}
           placeholder="Name"
-          className="w-full border p-2 rounded mb-4"
+          className="w-full border border-gray-200 rounded-lg px-4 py-3 mb-4 outline-none focus:ring-2 focus:ring-blue-500"
         />
 
+        {/* EMAIL */}
         <input
           value={email}
           onChange={(e)=>setEmail(e.target.value)}
           placeholder="Email"
-          className="w-full border p-2 rounded mb-6"
+          className="w-full border border-gray-200 rounded-lg px-4 py-3 mb-6 outline-none focus:ring-2 focus:ring-blue-500"
         />
 
-        <button
+        {/* UPDATE BUTTON */}
+        <Button
+          size="lg"
+          className="w-full"
           onClick={updateProfile}
-          className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700"
         >
           Update Profile
-        </button>
+        </Button>
 
       </div>
 

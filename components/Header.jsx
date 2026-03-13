@@ -52,9 +52,8 @@ const Header = () => {
 
   return (
 
-    <header className="fixed top-0 w-full bg-white z-50 border-b">
-
-      <nav className="container mx-auto flex items-center justify-between p-4">
+    <header className="fixed top-0 w-full z-50 glass-nav">
+      <nav className="container mx-auto flex items-center justify-between px-6 py-3">
 
         <Link href="/">
           <Image
@@ -65,11 +64,22 @@ const Header = () => {
           />
         </Link>
 
-        <div className="hidden md:flex items-center gap-6">
-          <Link href="/">Home</Link>
-          <Link href="/dashboard">Dashboard</Link>
-          <Link href="/transactions">Transactions</Link>
-          <Link href="/contact">Contact</Link>
+        <div className="hidden md:flex items-center gap-8 font-semibold text-gray-700">
+          <Link href="/" className="hover:text-blue-600 hover:underline transition-colors">
+            Home
+          </Link>
+
+          <Link href="/dashboard" className="hover:text-blue-600 hover:underline transition-colors">
+            Dashboard
+          </Link>
+
+          <Link href="/transactions" className="hover:text-blue-600 hover:underline transition-colors">
+            Transactions
+          </Link>
+
+          <Link href="/contact" className="hover:text-blue-600  hover:underline transition-colors">
+          Contact
+          </Link>
         </div>
 
         <div className="flex items-center gap-4">
@@ -77,25 +87,20 @@ const Header = () => {
           {token ? (
 
             <DropdownMenu>
-
               <DropdownMenuTrigger asChild>
-
                 <button>
-
                   <Image
                     src={profilePic}
                     alt="profile"
                     width={35}
                     height={35}
-                    className="rounded-full"
+                    className="rounded-full border border-gray-200 hover:scale-105 transition"
                   />
-
                 </button>
 
               </DropdownMenuTrigger>
 
               <DropdownMenuContent align="end">
-
                 <DropdownMenuItem
                   onClick={() => router.push("/profile")}
                 >
@@ -107,9 +112,7 @@ const Header = () => {
                 >
                   Logout
                 </DropdownMenuItem>
-
               </DropdownMenuContent>
-
             </DropdownMenu>
 
           ) : (
@@ -117,13 +120,9 @@ const Header = () => {
             <Button onClick={() => router.push("/login")}>
               Login
             </Button>
-
           )}
-
         </div>
-
       </nav>
-
     </header>
   )
 }

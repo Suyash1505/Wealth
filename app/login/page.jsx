@@ -1,86 +1,88 @@
 "use client"
 
-import axios from "axios";
+import axios from "axios"
 import { useRouter } from "next/navigation"
-import { useState } from "react";
-import { toast } from "react-toastify";
+import { useState } from "react"
+import { toast } from "react-toastify"
+import { Button } from "@/components/ui/button"
 
 export default function Login(){
 
-    const router = useRouter();
+  const router = useRouter()
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
-    const handleLogin = async () => {
-        try {
+  const handleLogin = async () => {
+    try {
 
-            const res = await axios.post("/api/auth/login", {
-                email,
-                password
-            });
+      const res = await axios.post("/api/auth/login", {
+        email,
+        password
+      })
 
-            if(res.data.success){
+      if(res.data.success){
 
-                // SAVE TOKEN
-                localStorage.setItem("token", res.data.token);
+        localStorage.setItem("token", res.data.token)
 
-                // TELL HEADER AUTH CHANGED
-                window.dispatchEvent(new Event("authChanged"));
+        window.dispatchEvent(new Event("authChanged"))
 
-                toast.success("LOGIN SUCCESSFUL!");
+        toast.success("Login successful!")
 
-                router.push("/");
-                router.refresh();
-            }
+        router.push("/")
+        router.refresh()
+      }
 
-        } 
-        catch (error) {
+    } 
+    catch (error) {
 
-            toast.error(
-                error.response?.data?.message ||
-                "LOGIN FAIL!"
-            );
+      toast.error(
+        error.response?.data?.message ||
+        "Login failed!"
+      )
 
-        }
-    };
+    }
+  }
 
-    return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
+  return (
 
-            <div className="bg-white border p-8 rounded-lg w-[350px] shadow">
+    <div className="min-h-screen flex items-center justify-center px-6">
 
-                <h2 className="text-2xl mb-6 text-center font-semibold">
-                    Login
-                </h2>
+      <div className="glass-strong w-full max-w-md rounded-3xl p-10 shadow-xl">
 
-                <input
-                    type="email"
-                    placeholder="Email"
-                    onChange={(e)=>setEmail(e.target.value)}
-                    className="border p-2 w-full rounded"
-                />
+        {/* TITLE */}
+        <h2 className="text-3xl font-bold text-center mb-8 gradient-title">
+          Welcome Back
+        </h2>
 
-                <br/><br/>
+        {/* EMAIL */}
+        <input
+          type="email"
+          placeholder="Email"
+          onChange={(e)=>setEmail(e.target.value)}
+          className="w-full border border-gray-200 rounded-lg px-4 py-3 mb-4 outline-none focus:ring-2 focus:ring-blue-500"
+        />
 
-                <input
-                    type="password"
-                    placeholder="Password"
-                    onChange={(e)=>setPassword(e.target.value)}
-                    className="border p-2 w-full rounded"
-                />
+        {/* PASSWORD */}
+        <input
+          type="password"
+          placeholder="Password"
+          onChange={(e)=>setPassword(e.target.value)}
+          className="w-full border border-gray-200 rounded-lg px-4 py-3 mb-6 outline-none focus:ring-2 focus:ring-blue-500"
+        />
 
-                <br/><br/>
+        {/* LOGIN BUTTON */}
+        <Button
+          size="lg"
+          className="w-full"
+          onClick={handleLogin}
+        >
+          Login
+        </Button>
 
-                <button
-                    onClick={handleLogin}
-                    className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
-                >
-                    Login
-                </button>
+      </div>
 
-            </div>
+    </div>
 
-        </div>
-    )
+  )
 }
