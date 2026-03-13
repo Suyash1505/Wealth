@@ -14,51 +14,72 @@ export default function Login(){
 
     const handleLogin = async () => {
         try {
+
             const res = await axios.post("/api/auth/login", {
-                email, 
+                email,
                 password
             });
 
-            console.log(res.data);
-            
             if(res.data.success){
+
+                // SAVE TOKEN
                 localStorage.setItem("token", res.data.token);
+
+                // TELL HEADER AUTH CHANGED
+                window.dispatchEvent(new Event("authChanged"));
+
                 toast.success("LOGIN SUCCESSFUL!");
+
                 router.push("/");
+                router.refresh();
             }
+
         } 
         catch (error) {
+
             toast.error(
-                error.response?.data?.message || 
+                error.response?.data?.message ||
                 "LOGIN FAIL!"
             );
+
         }
     };
 
     return (
-        <div style={{padding:"40px"}}>
+        <div className="min-h-screen flex items-center justify-center bg-gray-100">
 
-            <h2>Login</h2>
+            <div className="bg-white border p-8 rounded-lg w-[350px] shadow">
 
-            <input
-                type="email"
-                placeholder="Email"
-                onChange={(e)=>setEmail(e.target.value)}
-            />
+                <h2 className="text-2xl mb-6 text-center font-semibold">
+                    Login
+                </h2>
 
-            <br/><br/>
+                <input
+                    type="email"
+                    placeholder="Email"
+                    onChange={(e)=>setEmail(e.target.value)}
+                    className="border p-2 w-full rounded"
+                />
 
-            <input
-                type="password"
-                placeholder="Password"
-                onChange={(e)=>setPassword(e.target.value)}
-            />
+                <br/><br/>
 
-            <br/><br/>
+                <input
+                    type="password"
+                    placeholder="Password"
+                    onChange={(e)=>setPassword(e.target.value)}
+                    className="border p-2 w-full rounded"
+                />
 
-            <button onClick={handleLogin}>
-                Login
-            </button>
+                <br/><br/>
+
+                <button
+                    onClick={handleLogin}
+                    className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+                >
+                    Login
+                </button>
+
+            </div>
 
         </div>
     )

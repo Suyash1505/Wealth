@@ -29,17 +29,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${sora.variable} ${jetMono.variable} antialiased`}
+        className={`${inter.variable} ${sora.variable} ${jetMono.variable} antialiased flex flex-col min-h-screen`}
       >
 
         {/* ------- HEADER ----------- */}
         <Header/>
 
-        <main className="min-h-screen">
+        <main className="flex-1 pt-35">
           {children}
-
           <ToastProvider/>
-
         </main>
       
         {/* ------- FOOTER ----------- */}
