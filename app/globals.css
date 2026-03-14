@@ -145,7 +145,21 @@
 
   /* gradient text */
   .gradient-title {
-    @apply bg-gradient-to-br from-blue-600 to-purple-600 font-extrabold tracking-tighter pr-2 pb-2 text-transparent bg-clip-text;
+    @apply bg-gradient-to-br from-blue-600 to-purple-600 font-extrabold tracking-tighter pr-0.5 pb-0.5 text-transparent bg-clip-text;
   }
 }
 
+.hero-image-wrapper {
+  perspective: 1000px;
+}
+
+.hero-image{
+  transform: rotateX(15deg) scale(1);
+  transition: transform 0.6s ease-out;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+.hero-image.scrolled {
+  transform: rotateX(0deg) scale(1) translateY(40px);
+}
