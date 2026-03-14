@@ -27,7 +27,12 @@ const AccountSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: true
-    }
+    },
+
+    transactions: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Transaction"
+    }]
 }, { timestamps: true});
 
 export default mongoose.models.Account || mongoose.model("Account", AccountSchema);
