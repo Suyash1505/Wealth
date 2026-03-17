@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {
 Drawer,
 DrawerTitle,
@@ -28,6 +28,9 @@ SelectValue
 
 import { Switch } from "./ui/switch"
 import { Button } from "./ui/button"
+import useFetch from "@/hooks/useFetch"
+import { createAccount } from "@/lib/api/account"
+import { toast } from "react-toastify"
 
 const CreateAccountDrawer = ({ children }) => {
 
@@ -50,9 +53,31 @@ const CreateAccountDrawer = ({ children }) => {
         }
     })
 
+    const {
+        data: newAccount,
+        error,
+        fn: createAccountFn,
+        loading: createAccountLoading,
+    } = useFetch(createAccount);
+
     const onSubmit = async (data) => {
         console.log(data)
+        await createAccountFn(data);
     }
+
+    useEffect( () => {
+        if(newAccount){
+            toast.success("ACCOUNT CREATED SUCCESSFULLY!");
+            reset();
+            setOpen(false);
+        }
+    }, [reset, newAccount])
+
+    useEffect(() => {
+        if (error) {
+            toast.error(error.message || "FAILED TO CREATE AN ACCOUNT");
+        }
+    }, [error]);
 
 return (
     <Drawer open={open} onOpenChange={setOpen}>
@@ -208,8 +233,9 @@ return (
                     <Button
                         type="submit"
                         className="flex-1"
-                    >
-                        Create Account
+                        disabled={createAccountLoading}
+                        >
+                        {createAccountLoading ? "Creating..." : "Create Account"}
                     </Button>
                 </div>
             </form>
