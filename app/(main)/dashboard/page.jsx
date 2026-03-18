@@ -8,26 +8,28 @@ import { getUserAccount } from '@/lib/api/account'
 import AccountCard from './_components/account-card'
 
 const DashboardPage = () => {
-
     const [accounts, setAccounts] = useState([])
 
-    useEffect(() => {
-        const fetchAccounts = async () => {
-            try {
+    const fetchAccounts = async () => {
+        try {
             const data = await getUserAccount()
             setAccounts(data)
-            } 
-            catch (error) {
+        } 
+        catch (error) {
             console.error(error)
         }
     }
-    fetchAccounts()
+
+    useEffect( () => {
+        fetchAccounts()
     }, [])
+
 
     // TOTAL BALANCE CALCULATION
     const totalBalance = accounts.reduce((acc, curr) => {
-    return acc + parseFloat(curr.balance?.$numberDecimal || 0)
+        return acc + parseFloat(curr.balance?.$numberDecimal || 0)
     }, 0)
+
     return (
         <div className="container mx-auto px-4 py-8 space-y-10">
 
@@ -84,39 +86,43 @@ const DashboardPage = () => {
 
             {/* ADD ACCOUNT CARD */}
             <CreateAccountDrawer>
-            <div className="flex flex-col items-center justify-center gap-2 h-[150px]
-                rounded-2xl border-2 border-dashed border-gray-300
-                hover:border-blue-500 hover:bg-blue-50
-                transition cursor-pointer group"
-            >
+                <div className="flex flex-col items-center justify-center gap-2 h-[150px]
+                    rounded-2xl border-2 border-dashed border-gray-300
+                    hover:border-blue-500 hover:bg-blue-50
+                    transition cursor-pointer group"
+                >
 
-                <Plus className="w-8 h-8 text-gray-400 group-hover:text-blue-600 transition" />
+                    <Plus className="w-8 h-8 text-gray-400 group-hover:text-blue-600 transition" />
 
-                <p className="text-sm font-medium text-gray-500 group-hover:text-blue-600">
-                Add New Account
-                </p>
+                    <p className="text-sm font-medium text-gray-500 group-hover:text-blue-600">
+                    Add New Account
+                    </p>
 
-            </div>
-                </CreateAccountDrawer>
+                </div>
+            </CreateAccountDrawer>
 
                 {/* ACCOUNT LIST */}
                 {
                 accounts.length > 0 ? (
                     accounts.map((account) => (
-                    <AccountCard key={account._id} account={account} />
+                    <AccountCard 
+                        key={account._id} 
+                        account={account} 
+                        refreshAccounts={fetchAccounts}
+                    />
                     ))
                 ) : (
 
-                    // EMPTY STATE
-                    <div className="col-span-full flex flex-col items-center justify-center py-20 text-center">
-                        <p className="text-gray-500 mb-3">
-                            No accounts found
-                        </p>
+                // EMPTY STATE
+                <div className="col-span-full flex flex-col items-center justify-center py-20 text-center">
+                    <p className="text-gray-500 mb-3">
+                        No accounts found
+                    </p>
 
-                        <p className="text-sm text-gray-400">
-                            Start by adding your first account
-                        </p>
-                    </div>
+                    <p className="text-sm text-gray-400">
+                        Start by adding your first account
+                    </p>
+                </div>
 
                 )}
             </div>
