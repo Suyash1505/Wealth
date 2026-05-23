@@ -1,62 +1,57 @@
-"use client"
+"use client";
 
-import axios from "axios"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
-import { toast } from "react-toastify"
-import { Button } from "@/components/ui/button"
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { Button } from "@/components/ui/button";
 
-export default function Register(){
+export default function Register() {
+  const router = useRouter();
 
-  const router = useRouter()
+  const [user_name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const [user_name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [loading, setLoading] = useState(false)
+  const handleRegister = async (e) => {
+    e.preventDefault();
 
-  const handleRegister = async () => {
+    // VALIDATE FIELDS
+    if (!user_name || !email || !password) {
+      return toast.error("ALL FIELDS ARE REQUIRED");
+    }
 
-    if(!user_name || !email || !password){
-      toast.error("All fields are required")
-      return
+    // VALIDATE PASSWORD
+    if (password.length < 8) {
+      return toast.error("PASSWORD MUST BE AT LEAST 8 CHARACTERS");
     }
 
     try {
+      setLoading(true);
 
-      setLoading(true)
-
+      // REGISTER REQUEST
       const res = await axios.post("/api/auth/register", {
         user_name,
-        email,
-        password
-      })
+        email: email.trim().toLowerCase(),
+        password,
+      });
 
-      if(res.data.success){
-        toast.success("Registration successful!")
-        router.push("/login")
+      // SUCCESS
+      if (res.data.success) {
+        toast.success("REGISTRATION SUCCESSFUL");
+
+        router.push("/login");
       }
-
-    } 
-    catch (error) {
-
-      toast.error(
-        error.response?.data?.message ||
-        "Registration failed"
-      )
-
+    } catch (error) {
+      toast.error(error.response?.data?.message || "REGISTRATION FAILED");
+    } finally {
+      setLoading(false);
     }
-    finally{
-      setLoading(false)
-    }
-  }
-
+  };
   return (
-
     <div className="min-h-screen flex items-center justify-center px-6">
-
       <div className="glass-strong w-full max-w-md rounded-3xl p-10 shadow-xl">
-
         {/* TITLE */}
         <h2 className="text-3xl font-bold text-center mb-8 gradient-title">
           Create Account
@@ -109,10 +104,7 @@ export default function Register(){
             Login
           </span>
         </p>
-
       </div>
-
     </div>
-
-  )
+  );
 }

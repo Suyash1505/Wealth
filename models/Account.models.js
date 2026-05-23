@@ -4,36 +4,44 @@ const AccountSchema = new mongoose.Schema({
 
     name: {
         type: String,
-        required: true
+        required: [true, "ACCOUNT NAME IS REQUIRED"],
+        trim: true,
+        maxlength: 50,
     },
 
     type: {
         type: String,
-        enum: ["CURRENT", "SAVING"],
-        required: true
+        enum: ["CURRENT", "SAVINGS"],
+        required: true,
     },
 
     balance: {
         type: mongoose.Schema.Types.Decimal128,
-        default: 0
+        default: 0,
+        min: 0,
+    },
+
+    currency: {
+        type: String,
+        default: "INR",
     },
 
     isDefault: {
         type: Boolean,
-        default: false
+        default: false,
     },
 
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
-        required: true
+        required: true,
+        index: true,
     },
 
-    transactions: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Transaction"
-    }]
-}, { timestamps: true});
+}, { timestamps: true });
 
-export default mongoose.models.Account || mongoose.model("Account", AccountSchema);
+const Account =
+    mongoose.models.Account ||
+    mongoose.model("Account", AccountSchema);
 
+export default Account;

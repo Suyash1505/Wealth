@@ -5,68 +5,90 @@ const TransactionSchema = new mongoose.Schema({
     type: {
         type: String,
         enum: ["INCOME", "EXPENSE"],
-        required: true
+        required: true,
+        index: true,
     },
 
     amount: {
         type: mongoose.Schema.Types.Decimal128,
-        required: true
+        required: true,
+        min: 0,
     },
 
     description: {
-        type: String
-    },
-
-    date: {
-        type: Date,
-        required: true
+        type: String,
+        trim: true,
+        maxlength: 200,
     },
 
     category: {
         type: String,
-        required: true
+        required: true,
+        index: true,
+    },
+
+    merchant: {
+        type: String,
+        trim: true,
+    },
+
+    date: {
+        type: Date,
+        required: true,
+        index: true,
+    },
+
+    currency: {
+        type: String,
+        default: "INR",
     },
 
     receiptUrl: {
-        type: String
+        type: String,
     },
 
     isRecurring: {
         type: Boolean,
-        default: false
+        default: false,
     },
 
     recurringInterval: {
         type: String,
-        enum: ["DAILY", "WEEKLY", "MONTHLY", "YEARLY"]
+        enum: ["DAILY", "WEEKLY", "MONTHLY", "YEARLY"],
     },
 
     nextRecurringDate: {
-        type: Date
+        type: Date,
     },
 
     lastProcessed: {
-        type: Date
+        type: Date,
     },
 
     status: {
         type: String,
         enum: ["PENDING", "COMPLETED", "FAILED"],
-        default: "COMPLETED"
+        default: "COMPLETED",
     },
 
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
-        required: true
+        required: true,
+        index: true,
     },
 
     accountId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Account",
-        required: true
-    }
+        required: true,
+        index: true,
+    },
 
 }, { timestamps: true });
 
-export default mongoose.models.Transaction || mongoose.model("Transaction", TransactionSchema);
+const Transaction =
+    mongoose.models.Transaction ||
+    mongoose.model("Transaction", TransactionSchema);
+
+export default Transaction;

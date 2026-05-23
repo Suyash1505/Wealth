@@ -1,36 +1,52 @@
-"use client"
+"use client";
 
-import axios from "axios"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
-import { toast } from "react-toastify"
-import { Button } from "@/components/ui/button"
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { Button } from "@/components/ui/button";
 
-export default function Login(){
+export default function Login() {
 
-  const router = useRouter()
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-  const handleLogin = async () => {
     try {
 
+      // VALIDATE FIELDS
+      if (!email || !password) {
+        return toast.error("ALL FIELDS ARE REQUIRED");
+      }
+
+      setLoading(true);
+
+      // LOGIN REQUEST
       const res = await axios.post("/api/auth/login", {
         email,
-        password
-      })
+        password,
+      });
 
-      if(res.data.success){
+      // LOGIN SUCCESS
+      if (res.data.success) {
 
-        localStorage.setItem("token", res.data.token)
+        localStorage.setItem(
+          "token",
+          res.data.token
+        );
 
-        window.dispatchEvent(new Event("authChanged"))
+        // UPDATE AUTH STATE
+        window.dispatchEvent(
+          new Event("authChanged")
+        );
 
-        toast.success("Login successful!")
-
-        router.push("/")
-        router.refresh()
+        toast.success("LOGIN SUCCESSFUL");
+        router.push("/");
+        router.refresh();
       }
 
     } 
@@ -38,16 +54,19 @@ export default function Login(){
 
       toast.error(
         error.response?.data?.message ||
-        "Login failed!"
-      )
+        "LOGIN FAILED"
+      );
 
+    } 
+    finally {
+
+      setLoading(false);
     }
-  }
+  };
 
   return (
 
     <div className="min-h-screen flex items-center justify-center px-6">
-
       <div className="glass-strong w-full max-w-md rounded-3xl p-10 shadow-xl">
 
         {/* TITLE */}
@@ -55,34 +74,49 @@ export default function Login(){
           Welcome Back
         </h2>
 
-        {/* EMAIL */}
-        <input
-          type="email"
-          placeholder="Email"
-          onChange={(e)=>setEmail(e.target.value)}
-          className="w-full border border-gray-200 rounded-lg px-4 py-3 mb-4 outline-none focus:ring-2 focus:ring-blue-500"
-        />
-
-        {/* PASSWORD */}
-        <input
-          type="password"
-          placeholder="Password"
-          onChange={(e)=>setPassword(e.target.value)}
-          className="w-full border border-gray-200 rounded-lg px-4 py-3 mb-6 outline-none focus:ring-2 focus:ring-blue-500"
-        />
-
-        {/* LOGIN BUTTON */}
-        <Button
-          size="lg"
-          className="w-full"
-          onClick={handleLogin}
+        {/* LOGIN FORM */}
+        <form
+          onSubmit={handleLogin}
+          className="space-y-4"
         >
-          Login
-        </Button>
 
+          {/* EMAIL */}
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) =>
+              setEmail(e.target.value)
+            }
+            className="w-full border border-gray-200 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          {/* PASSWORD */}
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) =>
+              setPassword(e.target.value)
+            }
+            className="w-full border border-gray-200 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          {/* LOGIN BUTTON */}
+          <Button
+            size="lg"
+            className="w-full"
+            type="submit"
+            disabled={loading}
+          >
+            {
+              loading
+                ? "LOGGING IN..."
+                : "LOGIN"
+            }
+          </Button>
+        </form>
       </div>
-
     </div>
-
-  )
+  );
 }
