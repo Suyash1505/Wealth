@@ -4,18 +4,27 @@ const UserSchema = new mongoose.Schema({
 
   user_name: {
     type: String,
-    required: true
+    required: [true, "USER NAME IS REQUIRED!"],
+    trim: true,
+    minlength: 3,
+    maxlength: 30
   },
 
   email: {
     type: String,
     unique: true,
-    required: true
+    required: [true, "EMAIL IS REQUIRED!"],
+    lowercase: true,
+    trim: true,
+    index: true,
+    match: [/^\S+@\S+\.\S+$/, "PLEASE ENTER A VALID EMAIL"],
   },
 
   password: {
     type: String,
-    required: true
+    required: [true, "PASSWORD IS REQUIRED!"],
+    minlength: 6,
+    select: false
   },
 
   profilePic: {
@@ -40,4 +49,5 @@ const UserSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-export default mongoose.models.User || mongoose.model("User", UserSchema);
+const User = mongoose.models.User || mongoose.model("User", UserSchema);
+export default User;
