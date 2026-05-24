@@ -173,6 +173,18 @@
   }
 }
 
+/* Page-level radial mesh (fixed behind all content) */
+.bg-mesh {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(13, 148, 136, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(245, 158, 11, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 60% 40%, rgba(14, 184, 166, 0.08) 0%, transparent 50%);
+}
+
 /* ── Hero image 3-D tilt ────────────────────────────── */
 .hero-image-wrapper {
   perspective: 1200px;

@@ -21,27 +21,32 @@ const jetMono = JetBrains_Mono({
 });
 
 export const metadata = {
-  title: "Wealth",
-  description: "AI Powered Finance Platform",
+  title: "FlowMint",
+  description: "AI-Powered Finance Intelligence Platform",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
-        className={`${inter.variable} ${sora.variable} ${jetMono.variable} antialiased flex flex-col min-h-screen`}
+        className={`${inter.variable} ${sora.variable} ${jetMono.variable} antialiased flex flex-col min-h-screen bg-background text-foreground relative`}
       >
+        {/* 1. Floating background glow mesh (guaranteed to render behind everything) */}
+        <div className="bg-mesh" />
 
-        {/* ------- HEADER ----------- */}
-        <Header/>
+        {/* 2. Content wrapper containing your page layout */}
+        <div className="relative z-10 flex flex-col min-h-screen">
+          {/* ------- HEADER ----------- */}
+          <Header/>
 
-        <main className="flex-1 pt-20">
-          <ToastProvider/>
-          {children}
-        </main>
-      
-        {/* ------- FOOTER ----------- */}
-        <Footer/>
+          <main className="flex-1 pt-20">
+            <ToastProvider/>
+            {children}
+          </main>
+        
+          {/* ------- FOOTER ----------- */}
+          <Footer/>
+        </div>
       </body>
     </html>
   );
