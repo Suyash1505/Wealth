@@ -1,72 +1,108 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import {
+  Github,
+  Linkedin,
+  ArrowUpRight,
+  Layers3
+} from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="w-full mt-24 relative">
-      
-      {/* TOP BORDER GLOW */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-blue-400/50 to-transparent"></div>
+    <footer className="relative mt-32 overflow-hidden border-t border-white/10">
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute left-[-10%] top-[-20%] h-[500px] w-[500px] rounded-full bg-teal-500/10 blur-3xl" />
+        <div className="absolute left-[30%] top-[10%] h-[400px] w-[400px] rounded-full bg-emerald-400/5 blur-3xl" />
+        <div className="absolute right-[-10%] bottom-[-20%] h-[500px] w-[500px] rounded-full bg-amber-400/10 blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(45,212,191,0.04),transparent_35%)]" />
+      </div>
 
-      <div className="bg-white/70 backdrop-blur-xl border-t border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* 🔥 BRAND SECTION */}
-          <div className="flex flex-col items-center md:items-start gap-3">
-            <Image src="/logo.png" alt="Welth" width={120} height={50} />
+      {/* Top Border Glow */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-teal-400/40 to-transparent" />
+      <div className="relative z-10 mx-auto max-w-[1600px] px-10 py-24 sm:px-16 lg:px-24 xl:px-32">
 
-            <p className="text-sm text-gray-500 text-center md:text-left max-w-xs">
-              Smart financial management powered by AI. Track, analyze and grow
-              your wealth effortlessly.
+        {/* Main Footer Grid */}
+        <div className="grid grid-cols-1 gap-y-16 md:grid-cols-2 lg:grid-cols-[1.3fr_0.8fr_0.8fr_0.8fr]">
+
+          {/* Brand */}
+          <div className="max-w-md space-y-8">
+
+            <Link
+              href="/"
+              className="group flex items-center gap-4"
+            >
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-400 to-emerald-500 shadow-[0_0_35px_rgba(45,212,191,0.35)] transition-transform duration-300 group-hover:scale-105">
+                <Layers3 className="h-7 w-7 text-[#03111f]" />
+              </div>
+
+              <div>
+                <h2 className="gradient-title text-4xl font-black tracking-tight">
+                  FlowMint
+                </h2>
+              </div>
+            </Link>
+
+            <p className="text-lg leading-9 text-slate-400">
+              AI-powered financial intelligence designed to help
+              you track spending, optimize budgets, and grow
+              wealth with real-time insights.
             </p>
-          </div>
 
-          {/* 🔥 LINKS */}
-          <div className="flex items-center gap-6 text-sm text-gray-500">
-            <Link href="/terms" className="hover:text-blue-600 transition">
-              Terms
-            </Link>
+            {/* Socials */}
+            <div className="flex items-center gap-5">
 
-            <Link href="/privacy" className="hover:text-blue-600 transition">
-              Privacy
-            </Link>
+              <a
+                href="https://github.com/Suyash1505"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-teal-400/30 hover:bg-teal-500/10"
+              >
+                < Github className="h-5 w-5 text-slate-300 transition-colors duration-300 group-hover:text-teal-300" />
+              </a>
 
-            <Link href="/contact" className="hover:text-blue-600 transition">
-              Contact
-            </Link>
-          </div>
+              <a
+                href="https://www.linkedin.com/in/suyash-mukesh-shrivastava-a0666a264/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-teal-400/30 hover:bg-teal-500/10"
+              >
+                <Linkedin className="h-5 w-5 text-slate-300 transition-colors duration-300 group-hover:text-teal-300" />
+              </a>
 
-          {/* 🔥 SOCIAL ICONS (FIXED SIZE) */}
-          <div className="flex gap-4">
-            <a
-              href="https://github.com/Suyash1505"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 flex items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
-            >
-              <Image src="/github.png" alt="GitHub" width={24} height={24} />
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/suyash-mukesh-shrivastava-a0666a264/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-12 h-12 flex items-center justify-center rounded-full border border-gray-200 bg-white shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 hover:bg-blue-50"
-            >
-              <Image
-                src="/linkedIn.svg"
-                alt="LinkedIn"
-                width={22}
-                height={22}
-              />
-            </a>
+            </div>
           </div>
         </div>
 
-        {/* 🔥 BOTTOM BAR */}
-        <div className="border-t border-gray-200 py-4 text-center text-sm text-gray-400">
-          © {new Date().getFullYear()} Suyash Shrivastava. All rights reserved.
+        {/* Bottom Footer */}
+        <div className="mt-24 flex flex-col items-center justify-between gap-6 border-t border-white/10 pt-8 md:flex-row">
+
+          <p className="text-[15px] text-slate-500">
+            © {new Date().getFullYear()} FlowMint, Inc. All rights reserved.
+          </p>
+
+          <div className="flex items-center gap-8 text-[15px]">
+            <Link
+              href="/privacy"
+              className="text-slate-500 transition-colors duration-300 hover:text-teal-300"
+            >
+              Privacy
+            </Link>
+
+            <Link
+              href="/terms"
+              className="text-slate-500 transition-colors duration-300 hover:text-teal-300"
+            >
+              Terms
+            </Link>
+
+            <Link
+              href="/cookies"
+              className="text-slate-500 transition-colors duration-300 hover:text-teal-300"
+            >
+              Cookies
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

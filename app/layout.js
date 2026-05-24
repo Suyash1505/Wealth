@@ -31,10 +31,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${inter.variable} ${sora.variable} ${jetMono.variable} antialiased flex flex-col min-h-screen bg-background text-foreground relative`}
       >
-        {/* 1. Floating background glow mesh (guaranteed to render behind everything) */}
         <div className="bg-mesh" />
-
-        {/* 2. Content wrapper containing your page layout */}
         <div className="relative z-10 flex flex-col min-h-screen">
           {/* ------- HEADER ----------- */}
           <Header/>
