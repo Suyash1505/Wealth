@@ -1,10 +1,12 @@
 import {
   BarChart3,
-  Receipt,
   PieChart,
   CreditCard,
-  Globe,
-  Zap,
+  Brain,
+  WalletCards,
+  BellRing,
+  ShieldCheck,
+  TrendingUp,
 } from "lucide-react";
 
 // Stats Data
@@ -30,36 +32,40 @@ export const statsData = [
 // Features Data
 export const featuresData = [
   {
-    icon: <BarChart3 className="h-8 w-8 text-blue-600" />,
-    title: "Advanced Analytics",
+    icon: <Brain />,
+    title: "AI-Powered Insights",
     description:
-      "Get detailed insights into your spending patterns with AI-powered analytics",
+      "Analyze spending patterns and receive intelligent financial recommendations.",
   },
   {
-    icon: <Receipt className="h-8 w-8 text-blue-600" />,
-    title: "Smart Receipt Scanner",
+    icon: <BarChart3 />,
+    title: "Real-Time Analytics",
     description:
-      "Extract data automatically from receipts using advanced AI technology",
+      "Track transactions, expenses, and savings with live financial analytics.",
   },
   {
-    icon: <PieChart className="h-8 w-8 text-blue-600" />,
-    title: "Budget Planning",
-    description: "Create and manage budgets with intelligent recommendations",
+    icon: <WalletCards />,
+    title: "Smart Budget Engine",
+    description:
+      "Build adaptive budgets powered by AI-driven spending predictions.",
   },
   {
-    icon: <CreditCard className="h-8 w-8 text-blue-600" />,
-    title: "Multi-Account Support",
-    description: "Manage multiple accounts and credit cards in one place",
+    icon: <BellRing />,
+    title: "Proactive Alerts",
+    description:
+      "Receive instant alerts before overspending or unusual transactions occur.",
   },
   {
-    icon: <Globe className="h-8 w-8 text-blue-600" />,
-    title: "Multi-Currency",
-    description: "Support for multiple currencies with real-time conversion",
+    icon: <ShieldCheck />,
+    title: "Bank-Grade Security",
+    description:
+      "Enterprise-level encryption and secure authentication for total protection.",
   },
   {
-    icon: <Zap className="h-8 w-8 text-blue-600" />,
-    title: "Automated Insights",
-    description: "Get automated financial insights and recommendations",
+    icon: <TrendingUp />,
+    title: "Predictive Forecasting",
+    description:
+      "Forecast savings, investments, and cash flow using intelligent models.",
   },
 ];
 

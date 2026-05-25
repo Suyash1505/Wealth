@@ -11,12 +11,6 @@ import {
 const Footer = () => {
   return (
     <footer className="relative mt-32 overflow-hidden border-t border-white/10">
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute left-[-10%] top-[-20%] h-[500px] w-[500px] rounded-full bg-teal-500/10 blur-3xl" />
-        <div className="absolute left-[30%] top-[10%] h-[400px] w-[400px] rounded-full bg-emerald-400/5 blur-3xl" />
-        <div className="absolute right-[-10%] bottom-[-20%] h-[500px] w-[500px] rounded-full bg-amber-400/10 blur-3xl" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(45,212,191,0.04),transparent_35%)]" />
-      </div>
 
       {/* Top Border Glow */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-teal-400/40 to-transparent" />
