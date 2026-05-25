@@ -122,7 +122,7 @@ const Header = () => {
               
               <DropdownMenuContent
                 align="end"
-                className="bg-slate-800/95 backdrop-blur-xl border border-teal-500/20 text-white rounded-xl shadow-xl p-1.5 min-w-[150px]"
+                className="bg-slate-800/95 backdrop-blur-xl border border-teal-500/20 text-white rounded-xl shadow-xl p-1.5 min-w-37.5"
               >
                 <DropdownMenuItem
                   onClick={() => router.push("/profile")}
@@ -146,7 +146,7 @@ const Header = () => {
               <Button
                 variant="ghost"
                 onClick={() => router.push("/login")}
-                className="h-11 px-5 rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur-md
+                className="h-11 px-5 rounded-xl border border-white/10 bg-white/3 backdrop-blur-md
                  text-slate-200 font-semibold tracking-tight hover:bg-teal-500/10 hover:text-teal-300 hover:border-teal-500/20 transition-all duration-300">
                 Login
               </Button>
@@ -155,7 +155,7 @@ const Header = () => {
               <Button
                 onClick={() => router.push("/register")}
                 className="relative overflow-hidden h-11 px-6 rounded-xl font-semibold tracking-tight text-slate-950
-                  bg-gradient-to-r from-teal-300 via-emerald-300 to-amber-300 shadow-[0_0_25px_rgba(45,212,191,0.25)] hover:scale-[1.03] hover:shadow-[0_0_35px_rgba(45,212,191,0.40)] active:scale-[0.98] transition-all duration-300">
+                  bg-linear-to-r from-teal-300 via-emerald-300 to-amber-300 shadow-[0_0_25px_rgba(45,212,191,0.25)] hover:scale-[1.03] hover:shadow-[0_0_35px_rgba(45,212,191,0.40)] active:scale-[0.98] transition-all duration-300">
                 <span className="relative z-10">Get Started</span>
 
                 <div

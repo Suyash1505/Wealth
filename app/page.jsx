@@ -15,23 +15,23 @@ export default function Home() {
 
       {/* ================= STATS ================= */}
       <section className="relative overflow-hidden py-28">
-        <div className="mx-auto max-w-[1500px] px-6 sm:px-10 lg:px-16">
+        <div className="mx-auto max-w-375 px-6 sm:px-10 lg:px-16">
           <div className="relative overflow-hidden rounded-[2.5rem] border border-teal-500/15 bg-[#0b1d36]/80 backdrop-blur-2xl shadow-[0_0_60px_rgba(45,212,191,0.08)]">
             {/* Top Border Glow */}
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-teal-400/40 to-transparent" />
+            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-teal-400/40 to-transparent" />
 
             <div className="grid grid-cols-2 md:grid-cols-4">
               {statsData.map((stat, index) => (
                 <div
                   key={index}
-                  className={`group relative flex flex-col items-center justify-center px-8 py-14 transition-all duration-300 hover:bg-white/[0.02]
+                  className={`group relative flex flex-col items-center justify-center px-8 py-14 transition-all duration-300 hover:bg-white/2
                     ${index !== statsData.length - 1 ? "border-b border-white/5 md:border-b-0 md:border-r md:border-r-white/5" : ""}`}
                 >
                   {/* Hover Glow */}
                   <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_center,rgba(45,212,191,0.08),transparent_70%)]" />
 
                   {/* Value */}
-                  <div className="relative z-10 mb-3 bg-gradient-to-r from-teal-300 via-emerald-300 to-lime-300 bg-clip-text text-5xl font-black tracking-tight text-transparent md:text-6xl">
+                  <div className="relative z-10 mb-3 bg-linear-to-r from-teal-300 via-emerald-300 to-lime-300 bg-clip-text text-5xl font-black tracking-tight text-transparent md:text-6xl">
                     {stat.value}
                   </div>
 
@@ -48,7 +48,7 @@ export default function Home() {
 
       {/* ================= FEATURES ================= */}
       <section className="relative overflow-hidden py-32">
-        <div className="mx-auto max-w-[1500px] px-6 sm:px-10 lg:px-16">
+        <div className="mx-auto max-w-375 px-6 sm:px-10 lg:px-16">
           {/* Heading */}
           <div className="mb-20 max-w-5xl">
             <div className="mb-5 flex items-center gap-3">
@@ -61,7 +61,7 @@ export default function Home() {
 
             <h2 className="text-5xl font-black leading-tight tracking-tight text-white md:text-7xl">
               Everything You Need to{" "}
-              <span className="bg-gradient-to-r from-teal-300 via-emerald-300 to-lime-300 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-teal-300 via-emerald-300 to-lime-300 bg-clip-text text-transparent">
                 Master Money
               </span>
             </h2>
@@ -84,7 +84,7 @@ export default function Home() {
 
                 <CardContent className="relative z-10 flex h-full flex-col p-10">
                   {/* Icon */}
-                  <div className="mb-8 flex h-20 w-20 items-center justify-center rounded-3xl border border-white/5 bg-gradient-to-br from-teal-500/15 via-emerald-500/10 to-lime-500/5 shadow-[0_0_35px_rgba(45,212,191,0.08)]">
+                  <div className="mb-8 flex h-20 w-20 items-center justify-center rounded-3xl border border-white/5 bg-linear-to-br from-teal-500/15 via-emerald-500/10 to-lime-500/5 shadow-[0_0_35px_rgba(45,212,191,0.08)]">
                     <div className="text-teal-300 [&_svg]:h-9 [&_svg]:w-9 [&_svg]:stroke-[2.2]">
                       {feature.icon}
                     </div>
@@ -108,7 +108,7 @@ export default function Home() {
 
       {/* ================= HOW IT WORKS ================= */}
       <section className="relative overflow-hidden py-32">
-        <div className="mx-auto max-w-[1500px] px-6 sm:px-10 lg:px-16">
+        <div className="mx-auto max-w-375 px-6 sm:px-10 lg:px-16">
           <div className="grid items-center gap-20 lg:grid-cols-2">
             {/* LEFT CONTENT */}
             <div>
@@ -124,7 +124,7 @@ export default function Home() {
               {/* Heading */}
               <h2 className="max-w-3xl text-5xl font-black leading-tight tracking-tight text-white md:text-7xl">
                 Up and running{" "}
-                <span className="bg-gradient-to-r from-teal-300 via-emerald-300 to-lime-300 bg-clip-text text-transparent">
+                <span className="bg-linear-to-r from-teal-300 via-emerald-300 to-lime-300 bg-clip-text text-transparent">
                   in minutes
                 </span>
               </h2>
@@ -146,7 +146,7 @@ export default function Home() {
                     <div
                       className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border text-xl font-black transition-all duration-500 ${
                         index === 0
-                          ? "border-teal-400/30 bg-gradient-to-br from-teal-400 to-emerald-500 text-[#03111f] shadow-[0_0_35px_rgba(45,212,191,0.25)]"
+                          ? "border-teal-400/30 bg-linear-to-br from-teal-400 to-emerald-500 text-[#03111f] shadow-[0_0_35px_rgba(45,212,191,0.25)]"
                           : "border-teal-500/10 bg-[#0b1d36] text-teal-300"
                       }`}
                     >
@@ -182,7 +182,7 @@ export default function Home() {
                 {/* Header */}
                 <div className="flex items-center justify-between border-b border-white/5 px-8 py-6">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-teal-400 to-emerald-500 shadow-[0_0_20px_rgba(45,212,191,0.25)]">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-linear-to-br from-teal-400 to-emerald-500 shadow-[0_0_20px_rgba(45,212,191,0.25)]">
                       ⚡
                     </div>
 
@@ -225,13 +225,13 @@ export default function Home() {
                         >
                           {/* Income Bar */}
                           <div
-                            className="w-full rounded-t-2xl border border-teal-300/10 bg-gradient-to-b from-teal-300 via-teal-400 to-teal-600 shadow-[0_0_25px_rgba(45,212,191,0.18)]"
+                            className="w-full rounded-t-2xl border border-teal-300/10 bg-linear-to-b from-teal-300 via-teal-400 to-teal-600 shadow-[0_0_25px_rgba(45,212,191,0.18)]"
                             style={{ height: `${bar.income}px` }}
                           />
 
                           {/* Expense Bar */}
                           <div
-                            className="mt-[6px] w-full rounded-b-2xl border border-rose-300/10 bg-gradient-to-b from-rose-400 via-pink-500 to-rose-700 shadow-[0_0_20px_rgba(244,63,94,0.15)]"
+                            className="mt-1.5 w-full rounded-b-2xl border border-rose-300/10 bg-linear-to-b from-rose-400 via-pink-500 to-rose-700 shadow-[0_0_20px_rgba(244,63,94,0.15)]"
                             style={{ height: `${bar.expense}px` }}
                           />
                         </div>
@@ -275,10 +275,10 @@ export default function Home() {
                     ].map((item, index) => (
                       <div
                         key={index}
-                        className="flex items-center justify-between rounded-2xl border border-white/5 bg-white/[0.03] px-5 py-4"
+                        className="flex items-center justify-between rounded-2xl border border-white/5 bg-white/3 px-5 py-4"
                       >
                         <div className="flex items-center gap-4">
-                          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-teal-500/15 to-emerald-500/10 text-xl">
+                          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br from-teal-500/15 to-emerald-500/10 text-xl">
                             {item.icon}
                           </div>
 
@@ -314,10 +314,10 @@ export default function Home() {
 
       {/* ================= CTA ================= */}
       <section className="relative overflow-hidden py-32">
-        <div className="mx-auto max-w-[1500px] px-6 sm:px-10 lg:px-16">
+        <div className="mx-auto max-w-375 px-6 sm:px-10 lg:px-16">
           <div className="relative overflow-hidden rounded-[3rem] border border-teal-500/15 bg-[#0b1d36]/85 px-8 py-24 text-center backdrop-blur-2xl shadow-[0_0_80px_rgba(45,212,191,0.08)] md:px-20">
             {/* Top Glow */}
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-teal-400/50 to-transparent" />
+            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-teal-400/50 to-transparent" />
 
             {/* Background Mesh */}
             <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_top_left,rgba(45,212,191,0.10),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(251,191,36,0.08),transparent_30%)]" />
@@ -334,7 +334,7 @@ export default function Home() {
             {/* Heading */}
             <h2 className="relative z-10 mx-auto max-w-5xl text-5xl font-black leading-tight tracking-tight text-white md:text-7xl">
               Ready to Take Control of{" "}
-              <span className="bg-gradient-to-r from-teal-300 via-emerald-300 to-lime-300 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-teal-300 via-emerald-300 to-lime-300 bg-clip-text text-transparent">
                 Your Finances?
               </span>
             </h2>
@@ -349,7 +349,7 @@ export default function Home() {
             {/* Buttons */}
             <div className="relative z-10 mt-12 flex flex-col items-center justify-center gap-5 sm:flex-row">
               <Link href="/dashboard">
-                <Button className="h-16 rounded-2xl border border-teal-300/20 bg-gradient-to-r from-teal-400 via-emerald-400 to-lime-400 px-10 text-lg font-bold text-[#04111f] shadow-[0_0_35px_rgba(45,212,191,0.30)] transition-all duration-500 hover:shadow-[0_0_55px_rgba(45,212,191,0.45)]">
+                <Button className="h-16 rounded-2xl border border-teal-300/20 bg-linear-to-r from-teal-400 via-emerald-400 to-lime-400 px-10 text-lg font-bold text-[#04111f] shadow-[0_0_35px_rgba(45,212,191,0.30)] transition-all duration-500 hover:shadow-[0_0_55px_rgba(45,212,191,0.45)]">
                   Start Free Trial
                 </Button>
               </Link>
@@ -357,7 +357,7 @@ export default function Home() {
               <Link href="/contact">
                 <Button
                   variant="outline"
-                  className="h-16 rounded-2xl border border-white/10 bg-white/[0.03] px-10 text-lg font-semibold text-white backdrop-blur-xl transition-all duration-500 hover:border-teal-400/20 hover:bg-teal-500/10 hover:text-teal-300"
+                  className="h-16 rounded-2xl border border-white/10 bg-white/3 px-10 text-lg font-semibold text-white backdrop-blur-xl transition-all duration-500 hover:border-teal-400/20 hover:bg-teal-500/10 hover:text-teal-300"
                 >
                   Book Demo
                 </Button>

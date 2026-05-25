@@ -27,8 +27,8 @@ const HeroSection = () => {
     <section className="pb-24 pt-12 px-6 relative overflow-hidden">
       
       {/* Ambient background glow blurs behind hero text */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[120px] pointer-events-none z-0" />
-      <div className="absolute top-1/3 left-1/3 w-[300px] h-[300px] bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none z-0" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-teal-500/10 rounded-full blur-[120px] pointer-events-none z-0" />
+      <div className="absolute top-1/3 left-1/3 w-75 h-75 bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none z-0" />
       <div className="container mx-auto text-center max-w-6xl relative z-10">
 
 
@@ -76,14 +76,3 @@ const HeroSection = () => {
 }
 
 export default HeroSection
-
-// {/* TITLE */}
-//                 <h1 className="text-5xl md:text-7xl lg:text-[95px] leading-tight gradient-title">
-//                 Manage Your Finances <br /> with Intelligence
-//                 </h1>
-
-//                 {/* SUBTITLE */}
-//                 <p className="text-lg md:text-xl text-gray-600 mt-2 mb-10 max-w-3xl mx-auto">
-//                 An AI-powered financial management platform that helps you track,
-//                 analyze, and optimize your spending with real-time insights.
-//                 </p>
