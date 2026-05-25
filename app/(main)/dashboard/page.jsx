@@ -1,133 +1,149 @@
-"use client"
+"use client";
 
-import React, { useEffect, useState } from 'react'
-import CreateAccountDrawer from '@/components/Create-account-drawer'
-import { Card, CardContent } from '@/components/ui/card'
-import { Plus } from 'lucide-react'
-import { getUserAccount } from '@/lib/api/account'
-import AccountCard from './_components/account-card'
+import React, { useEffect, useState } from "react";
+import CreateAccountDrawer from "@/components/Create-account-drawer";
+import { Card } from "@/components/ui/card";
+import { Plus, Wallet, Landmark, ShieldCheck } from "lucide-react";
+import { getUserAccount } from "@/lib/api/account";
+import AccountCard from "./_components/account-card";
 
 const DashboardPage = () => {
-    const [accounts, setAccounts] = useState([])
+  const [accounts, setAccounts] = useState([]);
 
-    const fetchAccounts = async () => {
-        try {
-            const data = await getUserAccount()
-            setAccounts(data)
-        } 
-        catch (error) {
-            console.error(error)
-        }
+  const fetchAccounts = async () => {
+    try {
+      const data = await getUserAccount();
+      console.log(data);
+      setAccounts(data);
+    } catch (error) {
+      console.error(error);
     }
+  };
 
-    useEffect( () => {
-        fetchAccounts()
-    }, [])
+  useEffect(() => {
+    fetchAccounts();
+  }, []);
 
+  // TOTAL BALANCE
+  const totalBalance = (accounts).reduce((acc, curr) => {
+    return acc + parseFloat(curr.balance?.$numberDecimal || 0);
+  }, 0);
 
-    // TOTAL BALANCE CALCULATION
-    const totalBalance = accounts.reduce((acc, curr) => {
-        return acc + parseFloat(curr.balance?.$numberDecimal || 0)
-    }, 0)
+  return (
+    <div className="space-y-12">
+      {/* ================= SUMMARY CARDS ================= */}
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <Card className="group relative overflow-hidden rounded-[2rem] border border-teal-500/15 bg-[#0b1d36]/80 p-0 backdrop-blur-2xl transition-all duration-500 hover:border-teal-400/25 hover:shadow-[0_0_45px_rgba(45,212,191,0.12)]">
+            <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_top,rgba(45,212,191,0.08),transparent_70%)]" />
 
-    return (
-        <div className="container mx-auto px-4 py-8 space-y-10">
-
-        {/* PAGE HEADER */}
-        <div>
-            <p className="text-gray-500 mt-1">
-            Manage your accounts and track your finances
-            </p>
-        </div>
-
-
-        {/* SUMMARY CARDS */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-            {/* TOTAL BALANCE */}
-            <Card className="p-5 rounded-2xl shadow-sm hover:shadow-lg transition">
-                <p className="text-sm text-gray-500 mb-1">
-                    Total Balance
-                </p>
-                <h2 className="text-2xl font-bold">
-                    ₹ {totalBalance.toFixed(2)}
-                </h2>
-            </Card>
-
-
-            {/* TOTAL ACCOUNTS */}
-            <Card className="p-5 rounded-2xl shadow-sm hover:shadow-lg transition">
-                <p className="text-sm text-gray-500 mb-1">
-                    Total Accounts
-                </p>
-
-                <h2 className="text-2xl font-bold">
-                    {accounts.length}
-                </h2>
-            </Card>
-
-
-            {/* ACTIVE ACCOUNT */}
-            <Card className="p-5 rounded-2xl shadow-sm hover:shadow-lg transition">
-                <p className="text-sm text-gray-500 mb-1">
-                    Default Account
-                </p>
-
-                <h2 className="text-lg font-semibold capitalize">
-                    {accounts.find(acc => acc.isDefault)?.name || "None"}
-                </h2>
-            </Card>
-
-        </div>
-
-
-        {/* 🔥 ACCOUNT GRID */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-
-            {/* ADD ACCOUNT CARD */}
-            <CreateAccountDrawer>
-                <div className="flex flex-col items-center justify-center gap-2 h-[150px]
-                    rounded-2xl border-2 border-dashed border-gray-300
-                    hover:border-blue-500 hover:bg-blue-50
-                    transition cursor-pointer group"
-                >
-
-                    <Plus className="w-8 h-8 text-gray-400 group-hover:text-blue-600 transition" />
-
-                    <p className="text-sm font-medium text-gray-500 group-hover:text-blue-600">
-                    Add New Account
+            <div className="relative z-10 flex items-start justify-between p-8">
+                <div>
+                    <p className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-slate-500">
+                        Total Balance
                     </p>
 
-                </div>
-            </CreateAccountDrawer>
-
-                {/* ACCOUNT LIST */}
-                {
-                accounts.length > 0 ? (
-                    accounts.map((account) => (
-                    <AccountCard 
-                        key={account._id} 
-                        account={account} 
-                        refreshAccounts={fetchAccounts}
-                    />
-                    ))
-                ) : (
-
-                // EMPTY STATE
-                <div className="col-span-full flex flex-col items-center justify-center py-20 text-center">
-                    <p className="text-gray-500 mb-3">
-                        No accounts found
-                    </p>
-
-                    <p className="text-sm text-gray-400">
-                        Start by adding your first account
-                    </p>
+                    <h2 className="bg-linear-to-r from-teal-300 via-emerald-300 to-lime-300 bg-clip-text text-4xl font-black tracking-tight text-transparent">
+                        ₹ {totalBalance.toFixed(2)}
+                    </h2>
                 </div>
 
-                )}
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-teal-400/10 bg-gradient-to-br from-teal-500/15 to-emerald-500/10 shadow-[0_0_25px_rgba(45,212,191,0.10)]">
+                    <Wallet className="h-8 w-8 text-teal-300" />
+                </div>
             </div>
-        </div>
-    )
-}
+        </Card>
 
-export default DashboardPage
+        {/* TOTAL ACCOUNTS */}
+        <Card className="group relative overflow-hidden rounded-[2rem] border border-teal-500/15 bg-[#0b1d36]/80 p-0 backdrop-blur-2xl transition-all duration-500 hover:border-teal-400/25 hover:shadow-[0_0_45px_rgba(45,212,191,0.12)]">
+            <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_top,rgba(45,212,191,0.08),transparent_70%)]" />
+
+            <div className="relative z-10 flex items-start justify-between p-8">
+                <div>
+                    <p className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-slate-500">
+                        Total Accounts
+                    </p>
+
+                    <h2 className="text-4xl font-black tracking-tight text-white">
+                        {accounts.length}
+                    </h2>
+                </div>
+
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-teal-400/10 bg-gradient-to-br from-teal-500/15 to-emerald-500/10 shadow-[0_0_25px_rgba(45,212,191,0.10)]">
+                    <Landmark className="h-8 w-8 text-teal-300" />
+                </div>
+            </div>
+        </Card>
+
+        {/* DEFAULT ACCOUNT */}
+        <Card className="group relative overflow-hidden rounded-[2rem] border border-teal-500/15 bg-[#0b1d36]/80 p-0 backdrop-blur-2xl transition-all duration-500 hover:border-teal-400/25 hover:shadow-[0_0_45px_rgba(45,212,191,0.12)]">
+          <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_top,rgba(45,212,191,0.08),transparent_70%)]" />
+
+          <div className="relative z-10 flex items-start justify-between p-8">
+            <div>
+              <p className="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-slate-500">
+                Default Account
+              </p>
+
+              <h2 className="text-2xl font-black tracking-tight text-white capitalize">
+                {accounts.find((acc) => acc.isDefault)?.name || "None"}
+              </h2>
+            </div>
+
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-teal-400/10 bg-gradient-to-br from-teal-500/15 to-emerald-500/10 shadow-[0_0_25px_rgba(45,212,191,0.10)]">
+              <ShieldCheck className="h-8 w-8 text-teal-300" />
+            </div>
+          </div>
+        </Card>
+      </div>
+
+      {/* ================= ACCOUNT GRID ================= */}
+      <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <CreateAccountDrawer>
+          <div className="group relative flex h-60 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[2rem] border border-dashed border-teal-500/20 bg-[#0b1d36]/70 backdrop-blur-2xl transition-all duration-500 hover:border-teal-400/35 hover:shadow-[0_0_45px_rgba(45,212,191,0.12)]">
+            <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_center,rgba(45,212,191,0.10),transparent_70%)]" />
+
+            <div className="relative z-10 mb-6 flex h-20 w-20 items-center justify-center rounded-3xl border border-teal-400/10 bg-gradient-to-br from-teal-500/15 to-emerald-500/10 shadow-[0_0_30px_rgba(45,212,191,0.10)]">
+              <Plus className="h-10 w-10 text-teal-300 transition-transform duration-500 group-hover:rotate-90" />
+            </div>
+
+            <p className="relative z-10 text-xl font-bold tracking-tight text-white">
+              Add New Account
+            </p>
+
+            <p className="relative z-10 mt-2 max-w-xs text-center text-sm leading-7 text-slate-500">
+              Create a new account to track balances, budgets, and transactions.
+            </p>
+          </div>
+        </CreateAccountDrawer>
+
+        {/* ACCOUNT LIST */}
+        {accounts.length > 0 ? (
+          (accounts).map((account) => (
+            <AccountCard
+              key={account._id}
+              account={account}
+              refreshAccounts={fetchAccounts}
+            />
+          ))
+        ) : (
+            <div className="col-span-full flex flex-col items-center justify-center rounded-[2rem] border border-white/5 bg-[#0b1d36]/60 px-10 py-24 text-center backdrop-blur-2xl">
+                <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-[2rem] border border-teal-400/10 bg-gradient-to-br from-teal-500/15 to-emerald-500/10 shadow-[0_0_35px_rgba(45,212,191,0.08)]">
+                    <Wallet className="h-10 w-10 text-teal-300" />
+                </div>
+
+                <h3 className="text-3xl font-black tracking-tight text-white">
+                    No Accounts Found
+                </h3>
+
+                <p className="mt-4 max-w-md text-lg leading-8 text-slate-500">
+                    Start by creating your first account to begin tracking your
+                    finances with AI-powered insights.
+                </p>
+            </div>
+        )}
+        </div>
+    </div>
+  );
+};
+
+export default DashboardPage;

@@ -11,7 +11,7 @@ const AccountSchema = new mongoose.Schema({
 
     type: {
         type: String,
-        enum: ["CURRENT", "SAVINGS"],
+        enum: ["CURRENT", "SAVING"],
         required: true,
     },
 

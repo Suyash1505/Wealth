@@ -10,7 +10,6 @@ export async function POST(req) {
 
         // CHECK FOR THE EXISTING ACCOUNT
         const existingAccount = await Account.find( {userId });
-
         const shouldBeDefault = 
             existingAccount.length === 0 ? true : isDefault;
         

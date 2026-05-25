@@ -12,13 +12,19 @@ function Input({
       type={type}
       data-slot="input"
       className={cn(
-        "h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none selection:bg-primary selection:text-primary-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm dark:bg-input/30",
-        "focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
-        "aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
+        "flex h-14 w-full min-w-0 rounded-2xl border border-white/10 bg-white/3 px-5 text-base font-medium text-white backdrop-blur-xl transition-all duration-300 outline-none",
+        "placeholder:text-slate-500",
+        "selection:bg-teal-400 selection:text-[#04111f]",
+        "hover:border-teal-400/20 hover:bg-teal-500/2",
+        "focus:border-teal-400/30 focus:bg-teal-500/3 focus:ring-2 focus:ring-teal-400/10",
+        "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
+        "file:mr-4 file:rounded-xl file:border-0 file:bg-teal-500/10 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-teal-300",
+        "aria-invalid:border-rose-400/40 aria-invalid:ring-2 aria-invalid:ring-rose-400/10",
         className
       )}
-      {...props} />
-  );
+      {...props}
+    />
+  )
 }
 
 export { Input }
