@@ -98,7 +98,7 @@ const DashboardPage = () => {
 
       {/* ================= ACCOUNT GRID ================= */}
       <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-        <CreateAccountDrawer>
+        <CreateAccountDrawer refreshAccounts={fetchAccounts}>
           <div className="group relative flex h-60 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[2rem] border border-dashed border-teal-500/20 bg-[#0b1d36]/70 backdrop-blur-2xl transition-all duration-500 hover:border-teal-400/35 hover:shadow-[0_0_45px_rgba(45,212,191,0.12)]">
             <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_center,rgba(45,212,191,0.10),transparent_70%)]" />
 

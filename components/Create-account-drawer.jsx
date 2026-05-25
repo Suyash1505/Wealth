@@ -30,7 +30,7 @@ import useFetch from "@/hooks/useFetch";
 import { createAccount } from "@/lib/api/account";
 import { toast } from "react-toastify";
 
-const CreateAccountDrawer = ({ children }) => {
+const CreateAccountDrawer = ({ children, refreshAccounts }) => {
   const [open, setOpen] = useState(false);
 
   const {
@@ -65,6 +65,7 @@ const CreateAccountDrawer = ({ children }) => {
   useEffect(() => {
     if (newAccount) {
       toast.success("ACCOUNT CREATED SUCCESSFULLY!");
+      refreshAccounts();
       reset();
       setOpen(false);
     }
