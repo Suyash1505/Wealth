@@ -28,7 +28,6 @@ export async function POST(req) {
 
     // create unique temp path
     const tempPath = `/tmp/${Date.now()}-${image.name}`;
-
     await fs.promises.writeFile(tempPath, buffer);
 
     // upload to cloudinary

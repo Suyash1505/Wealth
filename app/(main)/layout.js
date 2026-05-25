@@ -12,7 +12,7 @@ export default function MainLayout({ children }) {
 
         // GET TOKEN
         const token = localStorage.getItem("token");
-
+        
         // IF NO TOKEN
         if (!token) {
             router.push("/login");

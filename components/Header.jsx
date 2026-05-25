@@ -62,7 +62,8 @@ const Header = () => {
   return (
     <header className="fixed top-0 w-full z-50 glass-nav">
       <nav className="container mx-auto flex items-center justify-between px-6 py-4">
-        {/* 1. Rebranded Logo using premium FlowMint branding markup */}
+        
+        
         <Link href="/" className="flex items-center gap-2.5 group">
           <div className="w-9 h-9 rounded-xl bg-linear-to-br from-teal-600 to-emerald-500 flex items-center justify-center shadow-[0_0_20px_rgba(13,148,136,0.4)] group-hover:scale-105 transition-transform duration-250">
             <svg
@@ -79,12 +80,13 @@ const Header = () => {
               <path d="M2 12l10 5 10-5" />
             </svg>
           </div>
+
           <span className="text-xl font-extrabold tracking-tight gradient-title">
             FlowMint
           </span>
         </Link>
 
-        {/* 2. Glassmorphic pill active page indicators */}
+         {/* --- LINKS --- */}
         <div className="hidden md:flex items-center gap-2">
           {navLinks.map((link) => (
             <Link
@@ -101,7 +103,7 @@ const Header = () => {
           ))}
         </div>
 
-        {/* 3. Account / Authentication Options */}
+         {/* -- ACCOUNT AUTH ---- */}
         <div className="flex items-center gap-4">
           {token ? (
             <DropdownMenu>
@@ -117,7 +119,7 @@ const Header = () => {
                 </button>
               </DropdownMenuTrigger>
 
-              {/* 4. Styled dropdown to match the dark theme */}
+              
               <DropdownMenuContent
                 align="end"
                 className="bg-slate-800/95 backdrop-blur-xl border border-teal-500/20 text-white rounded-xl shadow-xl p-1.5 min-w-[150px]"
@@ -139,7 +141,8 @@ const Header = () => {
             </DropdownMenu>
           ) : (
             <div className="flex items-center gap-3">
-              {/* Login Button */}
+
+               {/* --- LOGIN --- */}
               <Button
                 variant="ghost"
                 onClick={() => router.push("/login")}
@@ -148,14 +151,13 @@ const Header = () => {
                 Login
               </Button>
 
-              {/* Register Button */}
+               {/* --- REGISTER --- */}
               <Button
                 onClick={() => router.push("/register")}
                 className="relative overflow-hidden h-11 px-6 rounded-xl font-semibold tracking-tight text-slate-950
                   bg-gradient-to-r from-teal-300 via-emerald-300 to-amber-300 shadow-[0_0_25px_rgba(45,212,191,0.25)] hover:scale-[1.03] hover:shadow-[0_0_35px_rgba(45,212,191,0.40)] active:scale-[0.98] transition-all duration-300">
                 <span className="relative z-10">Get Started</span>
 
-                {/* animated glow */}
                 <div
                   className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500
                   bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.45),transparent_70%)]"/>
