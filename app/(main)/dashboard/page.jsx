@@ -47,7 +47,7 @@ const DashboardPage = () => {
                     </h2>
                 </div>
 
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-teal-400/10 bg-gradient-to-br from-teal-500/15 to-emerald-500/10 shadow-[0_0_25px_rgba(45,212,191,0.10)]">
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-teal-400/10 bg-linear-to-br from-teal-500/15 to-emerald-500/10 shadow-[0_0_25px_rgba(45,212,191,0.10)]">
                     <Wallet className="h-8 w-8 text-teal-300" />
                 </div>
             </div>
@@ -68,7 +68,7 @@ const DashboardPage = () => {
                     </h2>
                 </div>
 
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-teal-400/10 bg-gradient-to-br from-teal-500/15 to-emerald-500/10 shadow-[0_0_25px_rgba(45,212,191,0.10)]">
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-teal-400/10 bg-linear-to-br from-teal-500/15 to-emerald-500/10 shadow-[0_0_25px_rgba(45,212,191,0.10)]">
                     <Landmark className="h-8 w-8 text-teal-300" />
                 </div>
             </div>
@@ -89,7 +89,7 @@ const DashboardPage = () => {
               </h2>
             </div>
 
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-teal-400/10 bg-gradient-to-br from-teal-500/15 to-emerald-500/10 shadow-[0_0_25px_rgba(45,212,191,0.10)]">
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-teal-400/10 bg-linear-to-br from-teal-500/15 to-emerald-500/10 shadow-[0_0_25px_rgba(45,212,191,0.10)]">
               <ShieldCheck className="h-8 w-8 text-teal-300" />
             </div>
           </div>
@@ -102,7 +102,7 @@ const DashboardPage = () => {
           <div className="group relative flex h-60 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-[2rem] border border-dashed border-teal-500/20 bg-[#0b1d36]/70 backdrop-blur-2xl transition-all duration-500 hover:border-teal-400/35 hover:shadow-[0_0_45px_rgba(45,212,191,0.12)]">
             <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_center,rgba(45,212,191,0.10),transparent_70%)]" />
 
-            <div className="relative z-10 mb-6 flex h-20 w-20 items-center justify-center rounded-3xl border border-teal-400/10 bg-gradient-to-br from-teal-500/15 to-emerald-500/10 shadow-[0_0_30px_rgba(45,212,191,0.10)]">
+            <div className="relative z-10 mb-6 flex h-20 w-20 items-center justify-center rounded-3xl border border-teal-400/10 bg-linear-to-br from-teal-500/15 to-emerald-500/10 shadow-[0_0_30px_rgba(45,212,191,0.10)]">
               <Plus className="h-10 w-10 text-teal-300 transition-transform duration-500 group-hover:rotate-90" />
             </div>
 
@@ -127,7 +127,7 @@ const DashboardPage = () => {
           ))
         ) : (
             <div className="col-span-full flex flex-col items-center justify-center rounded-[2rem] border border-white/5 bg-[#0b1d36]/60 px-10 py-24 text-center backdrop-blur-2xl">
-                <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-[2rem] border border-teal-400/10 bg-gradient-to-br from-teal-500/15 to-emerald-500/10 shadow-[0_0_35px_rgba(45,212,191,0.08)]">
+                <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-[2rem] border border-teal-400/10 bg-linear-to-br from-teal-500/15 to-emerald-500/10 shadow-[0_0_35px_rgba(45,212,191,0.08)]">
                     <Wallet className="h-10 w-10 text-teal-300" />
                 </div>
 

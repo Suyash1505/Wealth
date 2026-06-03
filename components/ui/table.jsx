@@ -7,13 +7,21 @@ function Table({ className, ...props }) {
   return (
     <div
       data-slot="table-container"
-      className="relative w-full overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-sm"
+      className="relative overflow-hidden rounded-[2rem] border border-teal-500/15 bg-[#0b1d36]/80 backdrop-blur-2xl shadow-[0_0_50px_rgba(45,212,191,0.06)]"
     >
-      <table
-        data-slot="table"
-        className={cn("w-full text-sm", className)}
-        {...props}
-      />{" "}
+      {/* Top Glow */}
+      <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-teal-400/40 to-transparent" />
+
+      {/* Background Glow */}
+      <div className="absolute left-[-10%] top-[-20%] h-62.5 w-62.5 rounded-full bg-teal-500/5 blur-3xl" />
+
+      <div className="relative w-full overflow-x-auto">
+        <table
+          data-slot="table"
+          className={cn("w-full caption-bottom text-sm text-white", className)}
+          {...props}
+        />
+      </div>
     </div>
   );
 }
@@ -22,7 +30,7 @@ function TableHeader({ className, ...props }) {
   return (
     <thead
       data-slot="table-header"
-      className={cn("bg-gray-50 border-b border-gray-200", className)}
+      className={cn("border-b border-white/5 bg-white/2", className)}
       {...props}
     />
   );
@@ -43,7 +51,7 @@ function TableFooter({ className, ...props }) {
     <tfoot
       data-slot="table-footer"
       className={cn(
-        "bg-gray-50 border-t border-gray-200 font-medium",
+        "border-t border-white/5 bg-white/2 font-semibold text-white",
         className,
       )}
       {...props}
@@ -56,9 +64,9 @@ function TableRow({ className, ...props }) {
     <tr
       data-slot="table-row"
       className={cn(
-        "border-b border-gray-100 transition-all duration-200",
-        "hover:bg-blue-50/60 hover:scale-[1.001]",
-        "data-[state=selected]:bg-blue-100",
+        "border-b border-white/5 transition-all duration-300",
+        "hover:bg-white/2",
+        "data-[state=selected]:bg-teal-500/10",
         className,
       )}
       {...props}
@@ -71,7 +79,7 @@ function TableHead({ className, ...props }) {
     <th
       data-slot="table-head"
       className={cn(
-        "px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500",
+        "px-6 py-5 text-left text-xs font-bold uppercase tracking-[0.18em] text-slate-400",
         className,
       )}
       {...props}
@@ -83,7 +91,10 @@ function TableCell({ className, ...props }) {
   return (
     <td
       data-slot="table-cell"
-      className={cn("px-4 py-3 text-gray-700 align-middle", className)}
+      className={cn(
+        "px-6 py-5 align-middle text-base text-slate-300",
+        className,
+      )}
       {...props}
     />
   );
@@ -93,7 +104,7 @@ function TableCaption({ className, ...props }) {
   return (
     <caption
       data-slot="table-caption"
-      className={cn("mt-4 text-sm text-gray-500", className)}
+      className={cn("py-6 text-base leading-7 text-slate-500", className)}
       {...props}
     />
   );
