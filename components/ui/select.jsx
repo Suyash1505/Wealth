@@ -89,7 +89,7 @@ function SelectContent({
         {...props}
       >
         {/* Top Glow */}
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-teal-400/40 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-teal-400/40 to-transparent" />
 
         <SelectScrollUpButton />
 
@@ -97,7 +97,7 @@ function SelectContent({
           className={cn(
             "relative p-2",
             position === "popper" &&
-              "min-w-[var(--radix-select-trigger-width)]"
+              "min-w-(--radix-select-trigger-width)"
           )}
         >
           {children}

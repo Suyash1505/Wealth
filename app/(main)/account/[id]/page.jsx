@@ -7,6 +7,7 @@ import { useParams } from "next/navigation";
 import TransactionTable from "../_components/transaction-table";
 import { BarLoader } from "react-spinners";
 import { Landmark, ArrowUpRight, Wallet } from "lucide-react";
+import AccountChart from "../_components/account-chart";
 
 const AccountsPage = () => {
   const params = useParams();
@@ -101,6 +102,26 @@ const AccountsPage = () => {
       </div>
 
       {/* ================= CHART SECTION ================= */}
+      <Suspense
+        fallback={
+          <div className="overflow-hidden rounded-2xl border border-teal-500/10 bg-[#0b1d36]/70 p-6 backdrop-blur-2xl">
+            <div className="mb-4 flex items-center justify-between">
+              <div className="text-lg font-semibold text-slate-300">
+                Loading Transactions
+              </div>
+
+              <div className="text-sm text-slate-500">Fetching records...</div>
+            </div>
+
+            <BarLoader width={"100%"} color="#2dd4bf" height={6} />
+          </div>
+        }
+      >
+        <AccountChart transactions={account?.transactions || []}
+          refreshTransactions={() => getAccountFn(accountId)}/>
+      </Suspense>
+
+
 
       {/* ================= TRANSACTION TABLE ================= */}
       <Suspense

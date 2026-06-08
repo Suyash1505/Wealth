@@ -30,6 +30,7 @@
     "react-hook-form": "^7.71.2",
     "react-spinners": "^0.17.0",
     "react-toastify": "^11.0.5",
+    "recharts": "^3.8.1",
     "tailwind-merge": "^3.5.0",
     "validator": "^13.15.26",
     "vaul": "^1.1.2",
