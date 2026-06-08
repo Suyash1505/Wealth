@@ -12,10 +12,7 @@ const AccountsPage = () => {
   const params = useParams();
   const accountId = params.id;
 
-  const {
-    data: account,
-    fn: getAccountFn,
-  } = useFetch(getAccountDetails);
+  const { data: account, fn: getAccountFn } = useFetch(getAccountDetails);
 
   useEffect(() => {
     if (accountId) {
@@ -34,7 +31,6 @@ const AccountsPage = () => {
 
         <div className="relative z-10 flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex items-start gap-6">
-    
             <div className="flex h-24 w-24 items-center justify-center rounded-[2rem] border border-teal-400/10 bg-linear-to-br from-teal-500/15 to-emerald-500/10 shadow-[0_0_35px_rgba(45,212,191,0.10)]">
               <Landmark className="h-12 w-12 text-teal-300" />
             </div>
@@ -122,7 +118,10 @@ const AccountsPage = () => {
           </div>
         }
       >
-        <TransactionTable transactions={account?.transactions || []} />
+        <TransactionTable
+          transactions={account?.transactions || []}
+          refreshTransactions={() => getAccountFn(accountId)}
+        />
       </Suspense>
     </div>
   );
