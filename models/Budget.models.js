@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const BudgetSchema = new mongoose.Schema({
 
     amount: {
-        type: mongoose.Schema.Types.Decimal128,
+        type: Number,
         required: true
     },
 

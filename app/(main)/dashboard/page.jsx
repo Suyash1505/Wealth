@@ -6,31 +6,57 @@ import { Card } from "@/components/ui/card";
 import { Plus, Wallet, Landmark, ShieldCheck } from "lucide-react";
 import { getUserAccount } from "@/lib/api/account";
 import AccountCard from "./_components/account-card";
+import { getCurrentBudget } from "@/lib/api/budget";
+import BudgetProgress from "./_components/budget-progress";
 
 const DashboardPage = () => {
   const [accounts, setAccounts] = useState([]);
+  const [budgetData, setBudgetData] = useState(null);
 
   const fetchAccounts = async () => {
     try {
       const data = await getUserAccount();
-      console.log(data);
       setAccounts(data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  useEffect(() => {
-    fetchAccounts();
-  }, []);
-
   // TOTAL BALANCE
   const totalBalance = (accounts).reduce((acc, curr) => {
     return acc + parseFloat(curr.balance?.$numberDecimal || 0);
   }, 0);
 
+  // GET USER BUDGET
+  const fetchBudget = async () => {
+    try {
+      const data = await getCurrentBudget();
+      setBudgetData(data);
+    } 
+    catch (error) {
+      console.error(error);
+    }
+  }
+
+   useEffect(() => {
+    fetchAccounts();
+    fetchBudget();
+  }, []);
+
+  console.log("BUDGET DATA:", budgetData);
+
   return (
     <div className="space-y-12">
+
+      {/* ================= BUDGET PROGRESS ================= */}
+      {
+        <BudgetProgress
+          budget={budgetData?.budget || 0}
+          currenExpense={budgetData?.currentExpenses || 0}
+          refreshBudget={fetchBudget}
+        />
+      }
+
       {/* ================= SUMMARY CARDS ================= */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         <Card className="group relative overflow-hidden rounded-[2rem] border border-teal-500/15 bg-[#0b1d36]/80 p-0 backdrop-blur-2xl transition-all duration-500 hover:border-teal-400/25 hover:shadow-[0_0_45px_rgba(45,212,191,0.12)]">
